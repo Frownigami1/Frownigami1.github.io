@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<link href="stylesheet.css" rel="stylesheet" type="text/css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="script.js"></script>
+	<title>Welcome</title>
+	
+	<script>
+		function func1(a) {
+			return a*a;
+		}
+		
+		function func2(a,b,c) {
+			return a+b+c;
+		}
+		
+		function btnClick() {
+			person.age = person.age + 1;
+			console.log(person);
+		}
+		
+		function addNew() {
+			person2.name = document.getElementById("personName").value;
+			person2.age = document.getElementById("personAge").value;
+			person2.occupation = document.getElementById("personOcc").value;
+			console.log(person2);
+		}
+		
+		var x = "Hello";
+		var y = 2;
+		var arr = [1,2,3];
+		
+		//alert("Hello World!");
+	
+		alert(x);
+		console.log(x);
+		document.write(x);
+		
+		x = 3;
+		y = func1(x);
+		console.log("3 squared is " + y);
+		
+		y = func2(arr[0],arr[1],arr[2]);
+		console.log("1 + 2 + 3 is " + y);
+		
+		var person = {
+			name:"Steve",
+			age:30,
+			occupation:"Tester"
+		};
+		console.log(person);
+		
+		person.name = "Carol";
+		person.age = 23;
+		person.occupation = "Nurse";
+		console.log(person);
+		
+		var person2 = {
+			name:"",
+			age:1,
+			occupation:""
+		};
+		
+		var str = ' He said "My name is Elliott" ';
+		console.log(str);
+		
+		str = str.toUpperCase();
+		console.log(str);
+		
+		console.log("Concatenate " + 5);
+		console.log(5 + " Concatenate");
+		
+		console.log("Arrays:");
+		var strArr = ["Steve", "Carol", "Brian"];
+		console.log(strArr);
+		console.log(strArr[0]);
+		console.log(strArr[1]);
+		console.log(strArr[2]);
+		
+		console.log("Adding new array element:");
+		strArr.push("Sally");
+		console.log(strArr);
+		
+		console.log("Removing array element:");
+		strArr.splice(3);
+		console.log(strArr);
+		
+		function ageCheck() {
+			if (person2.age < 41 && person2.age > 19) {
+				console.log("Person2 is between 20-40 years old.");
+			}
+			else {
+				console.log("Person2 is NOT between 20-40 years old.");
+			}
+		}
+		
+		console.log("For loop:");
+		for (i = 1; i < 11; i++) {
+			console.log(i);
+		}
+		
+		console.log("Conditional for loop:");
+		for (i = 1; i < 11; i++) {
+			if (i % 2 == 0) {
+				console.log(i);
+			}
+		}
+		
+	</script>
+</head>
+
+<body<!-- onload="changeVis()"-->>
+	<header>		
+		<nav class="stroke">
+			<ul>
+				<li><a href="index.html">HOME</a></li>
+				<li><a href="portfolio.html">PORTFOLIO</a></li>
+				<li><a href="cv.html">CV</a></li>
+				<li><a href="projects.html">PROJECTS</a></li>
+				<li><a href="about.html">ABOUT</a></li>
+				<li><a href="contact.html">CONTACT</a></li>
+			<ul>
+		</nav>
+		
+		<div class="dropdown">
+			<div class="dropbtn" onclick="dropMenu()">
+				<a>SOCIAL MEDIA<img id="social_arrow" src="images/arrow_down.png" height="25" width="25"><a>
+			</div>
+			<div class="dropmenu" id="dropmenu">
+				
+				<a href="LinkedIn">LinkedIn<img src="images/linkedin_icon.png" height="24" width="24"></a>
+				<a href="Facebook">Facebook<img src="images/facebook_icon.png" height="24" width="24"></a>
+				<a href="Twitter">Twitter<img src="images/twitter_icon.png" height="24" width="24"></a>
+				
+			</div>
+		</div>
+		
+	</header>
+
+	<div class="cont">
+		<button onclick="btnClick()">Increase Person Age by 1</button><br><br>
+		
+		Add a new person:<br>
+	
+		Name: <input type="text" id="personName" value=""><br>
+		Age: <input type="text" id="personAge" value=""><br>
+		Occupation: <input type="text" id="personOcc" value=""><br><br>
+		<button onclick="addNew()">Add/Edit Person2</button><br><br>
+		<button onclick="ageCheck()">Check Person2 Age</button><br><br>
+	</div>
+	
+	<footer>
+
+	</footer>
+</body>
+
+</html>
