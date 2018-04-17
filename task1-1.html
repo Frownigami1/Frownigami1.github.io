@@ -3,10 +3,8 @@
 
 <head>
 	<meta charset="ISO-8859-1">
-	<link href="stylesheet.css" rel="stylesheet" type="text/css">
-	<link href='http://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
-	<script type="text/javascript" src="script.js"></script>
-	<title>Welcome</title>
+	<link href="style_alt.css" rel="stylesheet" type="text/css">
+	<title>Project - level 1 Workbook Tasks</title>
 	
 	<script>
 		function func1(a) {
@@ -112,8 +110,8 @@
 	</script>
 </head>
 
-<body<!-- onload="changeVis()"-->>
-	<header>		
+<body>
+	<header>	
 		<nav class="stroke">
 			<ul>
 				<li><a href="index.html">HOME</a></li>
@@ -123,31 +121,22 @@
 				<li><a href="about.html">ABOUT</a></li>
 				<li><a href="contact.html">CONTACT</a></li>
 			<ul>
-		</nav>
-		
-		<div class="dropdown">
-			<div class="dropbtn" onclick="dropMenu()">
-				<a>SOCIAL MEDIA<img id="social_arrow" src="images/arrow_down.png" height="25" width="25"><a>
-			</div>
-			<div class="dropmenu" id="dropmenu">
-				
-				<a href="LinkedIn">LinkedIn<img src="images/linkedin_icon.png" height="24" width="24"></a>
-				<a href="Facebook">Facebook<img src="images/facebook_icon.png" height="24" width="24"></a>
-				<a href="Twitter">Twitter<img src="images/twitter_icon.png" height="24" width="24"></a>
-				
-			</div>
-		</div>
-		
+		</nav>	
 	</header>
+	
+	<h2>JAVASCRIPT EXERCISE BOOK - LEVEL 1 TASKS</h2><br>
+	<h4>See console (F12) for more info.</h4>
 
 	<div class="cont">
 		<button onclick="btnClick()">Increase Person Age by 1</button><br><br>
 		
 		Add a new person:<br>
 	
-		Name: <input type="text" id="personName" value=""><br>
-		Age: <input type="text" id="personAge" value=""><br>
-		Occupation: <input type="text" id="personOcc" value=""><br><br>
+		<form>
+			Name: <input type="text" id="personName" value=""><br>
+			Age: <input type="text" id="personAge" value=""><br>
+			Occupation: <input type="text" id="personOcc" value=""><br><br>
+		</form>
 		<button onclick="addNew()">Add/Edit Person2</button><br><br>
 		<button onclick="ageCheck()">Check Person2 Age</button><br><br>
 	</div>

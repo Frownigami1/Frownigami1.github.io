@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<link href="style_alt.css" rel="stylesheet" type="text/css">
+	<title>Project - Level 2 Workbook Tasks</title>
+</head>
+
+<body>
+	<header>		
+		<nav class="stroke">
+			<ul>
+				<li><a href="index.html">HOME</a></li>
+				<li><a href="portfolio.html">PORTFOLIO</a></li>
+				<li><a href="cv.html">CV</a></li>
+				<li><a href="projects.html">PROJECTS</a></li>
+				<li><a href="about.html">ABOUT</a></li>
+				<li><a href="contact.html">CONTACT</a></li>
+			<ul>
+		</nav>	
+	</header>
+	
+	<h2>JAVASCRIPT EXERCISE BOOK - LEVEL 2 TASKS</h2><br>
+	<h4>See console (F12) for more info.</h4>
+
+	<div id="cont1" class="cont">
+		<button id="paraBtn" type="button" onclick="addPara()">Add Paragraph</button>
+		
+		<form id="editForm">
+			Enter text in the field below and press the button to change the content of the paragraph you just added. 
+			<br><input type="text" id="textEdit" value=""><br>
+			<button id="editBtn" type="button" onclick="editPara()">Edit Paragraph</button>
+		</form><br>
+		<button id="delBtn" type="button" onclick="delPara()">Delete Paragraph</button>
+	
+		<p>This is a paragraph.</p>
+		<p>This is another paragraph.</p>
+	</div>
+	
+	<br><h2>JSON Data</h2>
+	<button type="button" id="grabJSON" onClick="getJSON()">Get JSON Data</button><br><br>
+	<div id="json">
+	
+	</div>
+	
+	<footer>
+		<script>
+			var divCount = 101;
+			var divThree = "Buzz";
+			var divFive = "Bizz";
+			var x = -6;
+			var y = x;
+			var z = x;
+			var str = "aaabbbcccdddd";
+			var char1 = "";
+			var chae2 = "";
+			var countChar = 0;
+			var countTrip = 0;
+			
+			console.log("Iteration 3 - Fizz Buzz:");
+			console.log("--Additional Included--");
+			for (var i = 1; i < divCount; i++) {
+				if ((i % 3 == 0) && (i % 5 == 0)) {
+					console.log(divThree + divFive);
+				}
+				else if (i % 3 == 0) {
+					console.log(divThree);
+				}
+				else if (i % 5 == 0) {
+					console.log(divFive);
+				}
+				else {
+					console.log(i);
+				}
+			}
+			console.log("");
+			
+			console.log("Iteration 4:");
+			console.log("Reducing " + x + " to 1");
+			for (var i = 0; i < 999; i++) {
+				if (x == 1) {
+					console.log(y + " has been reduced to 1");
+					console.log("This took " + i + " iterations.");
+					break;
+				}
+				if ((((x / 3) % 1) === 0) && (x != 0)) {
+					x = x / 3;
+					console.log(x + " (" + z + " / 3)");
+					z = x;
+				}
+				else {
+					if (x > 3) {
+						x = x - 1;
+						console.log(x + " (" + z + " - 1)");
+						z = x;
+					}
+					else {
+						x = x + 1;
+						console.log(x + " (" + z + " + 1)");
+						z = x;
+					}
+				}
+			}
+			console.log("");
+			
+			console.log("Strings 4:");
+			for (var i = 0; i < (str.length - 1); i++) {
+				if (str[i] == str[i + 1]) {
+					countChar++;
+					if (countChar > 1) {
+						countTrip++;
+					}
+				}
+				else {
+					countChar = 0;
+				}
+			}
+			console.log("There are " + countTrip + " triples in " + '"' + str + '"');
+			console.log("");
+		
+			console.log("DOM 1: See page");
+			function addPara() {
+				var para = document.createElement("p");
+				var node = document.createTextNode("This new paragraph has been dynamically added with JavaScript!");
+				para.appendChild(node);
+				para.id = "extraPara";
+				document.getElementById("cont1").appendChild(para);
+				document.getElementById("paraBtn").style.visibility = "hidden";
+				document.getElementById("editForm").style.visibility = "visible";
+				document.getElementById("delBtn").style.visibility = "visible";
+			}
+			function editPara() {
+				document.getElementById("extraPara").innerHTML = document.getElementById("textEdit").value;
+			}
+			function delPara() {
+				var parent = document.getElementById("cont1");
+				var child = document.getElementById("extraPara");
+				parent.removeChild(child);
+				document.getElementById("paraBtn").style.visibility = "visible";
+				document.getElementById("editForm").style.visibility = "hidden";
+				document.getElementById("delBtn").style.visibility = "hidden";
+			}
+			console.log("");
+			
+			console.log("JSON 1: See page");
+			function getJSON() {
+				var json_data = {};
+				var json_text = "";
+				var url = "https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json";
+				
+				function Get(url) {
+					var httpReq = new XMLHttpRequest();
+					httpReq.open("GET",url,false);
+					httpReq.send(null);
+					return httpReq.responseText;
+				}
+				
+				json_data = JSON.parse(Get(url));
+
+				// Create table1 from JSON
+				var jsonTable1 = document.createElement("table");
+				jsonTable1.id = "jsonTable1";
+				document.getElementById("json").appendChild(jsonTable1);
+				
+				var table0 = document.getElementById("jsonTable1");
+				var row0 = table0.insertRow(0);
+				var row1 = table0.insertRow(1);
+				
+				var cell00 = row0.insertCell(0);
+				var cell01 = row0.insertCell(1);
+				var cell02 = row0.insertCell(2);
+				var cell03 = row0.insertCell(3);
+				var cell04 = row0.insertCell(4);
+				
+				var cell10 = row1.insertCell(0);
+				var cell11 = row1.insertCell(1);
+				var cell12 = row1.insertCell(2);
+				var cell13 = row1.insertCell(3);
+				var cell14 = row1.insertCell(4);
+				
+				cell00.innerHTML = "squadName";
+				cell01.innerHTML = "homeTown";
+				cell02.innerHTML = "formed";
+				cell03.innerHTML = "secretBase";
+				cell04.innerHTML = "active";
+				
+				cell10.innerHTML = json_data.squadName;
+				cell11.innerHTML = json_data.homeTown;
+				cell12.innerHTML = json_data.formed;
+				cell13.innerHTML = json_data.secretBase;
+				cell14.innerHTML = json_data.active;
+				
+				// Create table2 from JSON
+				/*var jsonTable2 = document.createElement("table");
+				jsonTable2.id = "jsonTable2";
+				document.getElementById("json").appendChild(jsonTable2);
+				
+				var table1 = document.getElementById("jsonTable2");
+				var row0 = table1.insertRow(0);
+				var row1 = table1.insertRow(1);
+				var row2 = table1.insertRow(2);
+				var row3 = table1.insertRow(3);
+				
+				var cell00 = row0.insertCell(0);
+				var cell01 = row0.insertCell(1);
+				var cell02 = row0.insertCell(2);
+				var cell03 = row0.insertCell(3);
+				
+				var cell10 = row1.insertCell(0);
+				var cell11 = row1.insertCell(1);
+				var cell12 = row1.insertCell(2);
+				var cell13 = row1.insertCell(3);
+				
+				cell00.innerHTML = "squadName";
+				cell01.innerHTML = "homeTown";
+				cell02.innerHTML = "formed";
+				cell03.innerHTML = "secretBase";
+				cell04.innerHTML = "active";
+				
+				cell10.innerHTML = json_data.squadName;
+				cell11.innerHTML = json_data.homeTown;
+				cell12.innerHTML = json_data.formed;
+				cell13.innerHTML = json_data.secretBase;
+				cell14.innerHTML = json_data.active; */
+			}
+			
+		</script>
+	</footer>
+</body>
+
+</html>
