@@ -66,9 +66,15 @@ h4 {
 	border-collapse: collapse;
 }
 
+#carTable {
+	margin-left: 5%;
+	border-collapse: collapse;
+}
+
 th, td {
 	padding: 10px;
 	border: 2px solid black;
+	text-align: center;
 }
 
 /* NAVIGATION */
