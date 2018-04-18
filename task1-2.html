@@ -44,13 +44,23 @@
 	
 	</div>
 	
+	<br><h2>JSON 2 - Search Feature</h2><br>
+	<br><form>
+		Enter text in the field and press the button to search for matching data. Note that this is case sensitive.<br>
+		<input type="text" id="jsonSearch" value=""><br>
+		<button type="button" id="grabJSON2" onClick="outputJSON()">Get JSON Data</button><br><br>
+	</form>
+	<div id="json2">
+	
+	</div>
+	
 	<footer>
 		<script>
 			// Variables
 			var divCount = 101;
 			var divThree = "Buzz";
 			var divFive = "Bizz";
-			var x = -6;
+			var x = 274;
 			var y = x;
 			var z = x;
 			var str = "aaabbbcccdddd";
@@ -98,22 +108,20 @@
 					console.log("This took " + i + " iterations.");
 					break;
 				}
-				if ((((x / 3) % 1) === 0) && (x != 0)) {
+				else if ((((x / 3) % 1) === 0) && (x != 0)) {
 					x = x / 3;
-					console.log(x + " (" + z + " / 3)");
+					console.log(z + " / 3 = " + x);
 					z = x;
 				}
-				else {
-					if (x > 3) {
-						x = x - 1;
-						console.log(x + " (" + z + " - 1)");
-						z = x;
-					}
-					else {
-						x = x + 1;
-						console.log(x + " (" + z + " + 1)");
-						z = x;
-					}
+				else if (((((x - 1) / 3) % 1) === 0) && ((x - 1) != 0)) {
+					x--;
+					console.log(z + " - 1 = " + x);
+					z = x;
+				}
+				else if (((((x + 1) / 3) % 1) === 0) && ((x + 1) != 0)) {
+					x++;
+					console.log(z + " + 1 = " + x);
+					z = x;
 				}
 			}
 			console.log("");
@@ -274,6 +282,160 @@
 				cell53.innerHTML = json_data.members[2].powers;
 			}
 			
+			function outputJSON() {
+				console.log("JSON 2: See page");
+			
+				var url = "https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json";
+				var json_data = getJSON(url);
+				var json_keys = Object.keys(json_data);
+				
+				var searchText = document.getElementById("jsonSearch").value;
+				var charCount = 0;
+				var toShow = [];
+				
+				// Loop through every entry in the JSON array
+				for (i = 0; i < json_data.length; i++) {
+				
+					// Loop through every character in json_data.nm
+					for (j = 0; j < json_data[i].nm.length; j++) {
+					
+						// Check whether any characters in json_data.nm match the searchText
+						if (searchText[charCount] == json_data[i].nm[j]) {
+							charCount++;
+							
+							// If an exact match has been found, break out of this loop and continue
+							if (charCount == searchText.length) {
+								toShow.push(i);
+								break;
+							}		
+						}
+						else {
+							charCount = 0;
+						}
+					}
+					if (charCount == searchText.length) {
+						charCount = 0;
+						continue;
+					}
+					
+					// Loop through every character in json_data.cty
+					for (j = 0; j < json_data[i].cty.length; j++) {
+						
+						// Check whether any characters in json_data.cty match the searchText
+						if (searchText[charCount] == json_data[i].cty[j]) {
+							charCount++;
+							
+							// If an exact match has been found, break out of this loop and continue
+							if (charCount == searchText.length) {
+								toShow.push(i);
+								break;
+							}		
+						}
+						else {
+							charCount = 0;
+						}
+					}
+					if (charCount == searchText.length) {
+						charCount = 0;
+						continue;
+					}
+					
+					// Loop through every character in json_data.hse
+					for (j = 0; j < json_data[i].hse.length; j++) {
+					
+						// Check whether any characters in json_data.hse match the searchText
+						if (searchText[charCount] == json_data[i].hse[j]) {
+							charCount++;
+							
+							// If an exact match has been found, break out of this loop and continue
+							if (charCount == searchText.length) {
+								toShow.push(i);
+								break;
+							}		
+						}
+						else {
+							charCount = 0;
+						}
+					}
+					if (charCount == searchText.length) {
+						charCount = 0;
+						continue;
+					}
+					
+					// Loop through every character in json_data.yrs
+					for (j = 0; j < json_data[i].yrs.length; j++) {
+					
+						// Check whether any characters in json_data.yrs match the searchText
+						if (searchText[charCount] == json_data[i].yrs[j]) {
+							charCount++;
+							
+							// If an exact match has been found, break out of this loop and continue
+							if (charCount == searchText.length) {
+								toShow.push(i);
+								break;
+							}		
+						}
+						else {
+							charCount = 0;
+						}
+					}
+					if (charCount == searchText.length) {
+						charCount = 0;
+						continue;
+					}
+				}
+				
+				// Delete the div element if it exists
+				var parent = document.getElementById("json2");
+				var child = document.getElementById("div");
+				if (child != null) {
+					parent.removeChild(child);
+				}
+				
+				// Create a new div element to display the matching json data and append it to json2
+				var div = document.createElement("div");
+				div.id = "div";
+				document.getElementById("json2").appendChild(div);
+				
+				var text;
+				var brk;
+				
+				if (toShow.length == 0) {
+					brk = document.createElement("br");
+					document.getElementById("div").appendChild(brk);
+					
+					text = document.createTextNode("No matching data found. Try again.");
+					document.getElementById("div").appendChild(text);
+					brk = document.createElement("br");
+					document.getElementById("div").appendChild(brk);
+				}
+				else {
+					for (i = 0; i < toShow.length; i++) {
+						brk = document.createElement("br");
+						document.getElementById("div").appendChild(brk);
+					
+						text = document.createTextNode(json_data[toShow[i]].nm);
+						document.getElementById("div").appendChild(text);
+						brk = document.createElement("br");
+						document.getElementById("div").appendChild(brk);
+						
+						text = document.createTextNode(json_data[toShow[i]].cty);
+						document.getElementById("div").appendChild(text);
+						brk = document.createElement("br");
+						document.getElementById("div").appendChild(brk);
+						
+						text = document.createTextNode(json_data[toShow[i]].hse);
+						document.getElementById("div").appendChild(text);
+						brk = document.createElement("br");
+						document.getElementById("div").appendChild(brk);
+						
+						text = document.createTextNode(json_data[toShow[i]].yrs);
+						document.getElementById("div").appendChild(text);
+						brk = document.createElement("br");
+						document.getElementById("div").appendChild(brk);
+					}	
+				}
+			}
 			
 		</script>
 	</footer>
