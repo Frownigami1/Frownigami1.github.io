@@ -39,13 +39,14 @@
 	</div>
 	
 	<br><h2>JSON Data</h2>
-	<button type="button" id="grabJSON" onClick="getJSON()">Get JSON Data</button><br><br>
+	<button type="button" id="grabJSON" onClick="buildTable()">Get JSON Data</button><br><br>
 	<div id="json">
 	
 	</div>
 	
 	<footer>
 		<script>
+			// Variables
 			var divCount = 101;
 			var divThree = "Buzz";
 			var divFive = "Bizz";
@@ -58,6 +59,19 @@
 			var countChar = 0;
 			var countTrip = 0;
 			
+			// Functions
+			function getJSON(url) {
+				var json_data = JSON.parse(Get(url));
+				return json_data;
+			}
+				
+			function Get(url) {
+				var httpReq = new XMLHttpRequest();
+				httpReq.open("GET",url,false);
+				httpReq.send(null);
+				return httpReq.responseText;
+			}
+				
 			console.log("Iteration 3 - Fizz Buzz:");
 			console.log("--Additional Included--");
 			for (var i = 1; i < divCount; i++) {
@@ -143,25 +157,27 @@
 			}
 			console.log("");
 			
-			console.log("JSON 1: See page");
-			function getJSON() {
-				var json_data = {};
-				var json_text = "";
+			function buildTable() {
+				console.log("JSON 1: See page");
+				document.getElementById("grabJSON").style.visibility = "hidden";
+			
 				var url = "https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json";
+				var json_data = getJSON(url);
+				var json_keys = Object.keys(json_data);
 				
-				function Get(url) {
-					var httpReq = new XMLHttpRequest();
-					httpReq.open("GET",url,false);
-					httpReq.send(null);
-					return httpReq.responseText;
-				}
 				
-				json_data = JSON.parse(Get(url));
-
-				// Create table1 from JSON
-				var jsonTable1 = document.createElement("table");
-				jsonTable1.id = "jsonTable1";
-				document.getElementById("json").appendChild(jsonTable1);
+				// Create first table
+				var headline = document.createElement("h4");
+				var node = document.createTextNode("Superhero Teams");
+				headline.appendChild(node);
+				document.getElementById("json").appendChild(headline);
+				
+				var brk = document.createElement("br");
+				document.getElementById("json").appendChild(brk);
+			
+				var jsonTable = document.createElement("table");
+				jsonTable.id = "jsonTable1";
+				document.getElementById("json").appendChild(jsonTable);
 				
 				var table0 = document.getElementById("jsonTable1");
 				var row0 = table0.insertRow(0);
@@ -179,11 +195,11 @@
 				var cell13 = row1.insertCell(3);
 				var cell14 = row1.insertCell(4);
 				
-				cell00.innerHTML = "squadName";
-				cell01.innerHTML = "homeTown";
-				cell02.innerHTML = "formed";
-				cell03.innerHTML = "secretBase";
-				cell04.innerHTML = "active";
+				cell00.innerHTML = json_keys[0];
+				cell01.innerHTML = json_keys[1];
+				cell02.innerHTML = json_keys[2];
+				cell03.innerHTML = json_keys[3];
+				cell04.innerHTML = json_keys[4];
 				
 				cell10.innerHTML = json_data.squadName;
 				cell11.innerHTML = json_data.homeTown;
@@ -191,10 +207,25 @@
 				cell13.innerHTML = json_data.secretBase;
 				cell14.innerHTML = json_data.active;
 				
-				// Create table2 from JSON
-				/*var jsonTable2 = document.createElement("table");
-				jsonTable2.id = "jsonTable2";
-				document.getElementById("json").appendChild(jsonTable2);
+				brk = document.createElement("br");
+				document.getElementById("json").appendChild(brk);
+				brk = document.createElement("br");
+				document.getElementById("json").appendChild(brk);
+				
+				// Create second table
+				json_keys = Object.keys(json_data.members[0]);
+				
+				headline = document.createElement("h4");
+				node = document.createTextNode(json_data.squadName + " team tembers");
+				headline.appendChild(node);
+				document.getElementById("json").appendChild(headline);
+				
+				brk = document.createElement("br");
+				document.getElementById("json").appendChild(brk);
+				
+				jsonTable = document.createElement("table");
+				jsonTable.id = "jsonTable2";
+				document.getElementById("json").appendChild(jsonTable);
 				
 				var table1 = document.getElementById("jsonTable2");
 				var row0 = table1.insertRow(0);
@@ -202,28 +233,47 @@
 				var row2 = table1.insertRow(2);
 				var row3 = table1.insertRow(3);
 				
-				var cell00 = row0.insertCell(0);
-				var cell01 = row0.insertCell(1);
-				var cell02 = row0.insertCell(2);
-				var cell03 = row0.insertCell(3);
+				var cell20 = row0.insertCell(0);
+				var cell21 = row0.insertCell(1);
+				var cell22 = row0.insertCell(2);
+				var cell23 = row0.insertCell(3);
 				
-				var cell10 = row1.insertCell(0);
-				var cell11 = row1.insertCell(1);
-				var cell12 = row1.insertCell(2);
-				var cell13 = row1.insertCell(3);
+				var cell30 = row1.insertCell(0);
+				var cell31 = row1.insertCell(1);
+				var cell32 = row1.insertCell(2);
+				var cell33 = row1.insertCell(3);
 				
-				cell00.innerHTML = "squadName";
-				cell01.innerHTML = "homeTown";
-				cell02.innerHTML = "formed";
-				cell03.innerHTML = "secretBase";
-				cell04.innerHTML = "active";
+				var cell40 = row2.insertCell(0);
+				var cell41 = row2.insertCell(1);
+				var cell42 = row2.insertCell(2);
+				var cell43 = row2.insertCell(3);
 				
-				cell10.innerHTML = json_data.squadName;
-				cell11.innerHTML = json_data.homeTown;
-				cell12.innerHTML = json_data.formed;
-				cell13.innerHTML = json_data.secretBase;
-				cell14.innerHTML = json_data.active; */
+				var cell50 = row3.insertCell(0);
+				var cell51 = row3.insertCell(1);
+				var cell52 = row3.insertCell(2);
+				var cell53 = row3.insertCell(3);
+				
+				cell20.innerHTML = json_keys[0];
+				cell21.innerHTML = json_keys[1];
+				cell22.innerHTML = json_keys[2];
+				cell23.innerHTML = json_keys[3];
+				
+				cell30.innerHTML = json_data.members[0].name;
+				cell31.innerHTML = json_data.members[0].age;
+				cell32.innerHTML = json_data.members[0].secretIdentity;
+				cell33.innerHTML = json_data.members[0].powers;
+				
+				cell40.innerHTML = json_data.members[1].name;
+				cell41.innerHTML = json_data.members[1].age;
+				cell42.innerHTML = json_data.members[1].secretIdentity;
+				cell43.innerHTML = json_data.members[1].powers;
+				
+				cell50.innerHTML = json_data.members[2].name;
+				cell51.innerHTML = json_data.members[2].age;
+				cell52.innerHTML = json_data.members[2].secretIdentity;
+				cell53.innerHTML = json_data.members[2].powers;
 			}
+			
 			
 		</script>
 	</footer>

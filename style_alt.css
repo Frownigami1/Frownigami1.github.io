@@ -60,6 +60,12 @@ h4 {
 	border-collapse: collapse;
 }
 
+#jsonTable2 {
+	display: inline-block;
+	margin: 5px;
+	border-collapse: collapse;
+}
+
 th, td {
 	padding: 10px;
 	border: 2px solid black;
